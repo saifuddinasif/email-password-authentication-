@@ -11,11 +11,15 @@ function BasicExample() {
 
   const [passwordError ,setPasswordError] =useState('');
 
+  const [success, setSuccess] = useState(false)
 
     const handleRegister = (e) => {
+
+      const form =e.target;
+  setSuccess(false)
  e.preventDefault()
-    const email =e.target.email.value;
-    const password =e.target.password.value;
+    const email =form.email.value;
+    const password =form.password.value;
     console.log(email, password);
     if(password.length < 6){
 
@@ -23,12 +27,10 @@ function BasicExample() {
       return;
 
     }
-        if(!/("^(?=.*[A-Z]).{1,}$")/.test(password)){
-
-          setPasswordError('please pr0vide upper case ')
-          return;
-
-        }
+    if (!/(?=.*[A-Z].*[A-Z])/.test(password)) {
+      setPasswordError('Please provide at least two uppercase');
+      return;
+  }
     
         setPasswordError('')
 
@@ -38,12 +40,14 @@ function BasicExample() {
   .then(result => {
 
   const user =result.user;
-
+  setSuccess(true)
+  form.reset()
   console.log(user);
 
   })
   .catch(error => {
     console.log("first", error);
+    setPasswordError(error.message)
 
   })
 
@@ -63,7 +67,8 @@ function BasicExample() {
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" name="password" placeholder="Password" required />
       </Form.Group>
-         <p className='text-danger'> {passwordError}</p>
+         <p className='text-danger'> {passwordError} </p>
+         {success && <p>created</p>}
       <Button variant="primary" type="submit">
             Register
       </Button>
