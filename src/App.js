@@ -1,23 +1,47 @@
-import logo from './logo.svg';
+import {getAuth} from 'firebase/auth';
+
+import React  from 'react';
 import './App.css';
+import app from './Firebase/Firebase.init';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import BasicExample from './Components/RegisterBootstrap';
+
+
+const auth = getAuth(app)
+
+const handleRegister = (e) =>  {
+
+  e.preventDefault();
+
+const email = e.target.email.value;
+
+const password = e.target.password.value;
+
+console.log(email, password)
+
+
+}
+
+const email = (e) => {
+
+console.log(e.target.value);
+}
+
+const pass = (e) => {
+  console.log(e.target.value);
+
+}
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+   
+   <BasicExample></BasicExample>
+  
+
+
+          
     </div>
   );
 }
