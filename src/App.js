@@ -1,44 +1,43 @@
-import {getAuth} from 'firebase/auth';
 
 import React  from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
-import app from './Firebase/Firebase.init';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './Components/Login';
+import Main from './Components/Main';
+
 import BasicExample from './Components/RegisterBootstrap';
 
 
-const auth = getAuth(app)
+const router =createBrowserRouter([
 
-const handleRegister = (e) =>  {
-
-  e.preventDefault();
-
-const email = e.target.email.value;
-
-const password = e.target.password.value;
-
-console.log(email, password)
-
-
-}
-
-const email = (e) => {
-
-console.log(e.target.value);
-}
-
-const pass = (e) => {
-  console.log(e.target.value);
-
-}
+  {
+    path:'/',
+    element:<Main></Main>,
+    children:[
+      {
+        path:'/',
+        element:<BasicExample></BasicExample>,
+      },
+      {
+        path:'/register',
+        element:<BasicExample></BasicExample>,
+      },
+      {
+        path:'/login',
+        element:<Login></Login>,
+      }
+    ]
+  }
+])
 
 
 function App() {
   return (
     <div className="App">
+
+
+<RouterProvider router={router}></RouterProvider>
    
-   <BasicExample></BasicExample>
-  
 
 
           
