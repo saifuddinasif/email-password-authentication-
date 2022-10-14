@@ -7,8 +7,8 @@ const Main = () => {
 
 
 <nav>
-    <Link to='/login'></Link>
-    <Link to='/register'></Link>
+           <Link className='text-danger m-4 text-bg-light text-decoration-none   fs-1 ' to='/login'>login</Link>
+            <Link  className='text-danger m-4 text-bg-light text-decoration-none   fs-1 ' to='/register'>Register</Link>
 </nav>
 <Outlet></Outlet>
         </div>

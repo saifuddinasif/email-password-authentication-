@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import app from './../Firebase/Firebase.init';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
 const auth =getAuth(app);
@@ -54,7 +55,9 @@ function BasicExample() {
     }
 
   return (
+    <>
     <Form  onSubmit={handleRegister} className='w-50 mx-auto'>
+      <p className='text-primary fs-3' > PLEASE REGISTER HERE </p>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" name="email" placeholder="Enter email"  required />
@@ -68,11 +71,15 @@ function BasicExample() {
         <Form.Control type="password" name="password" placeholder="Password" required />
       </Form.Group>
          <p className='text-danger'> {passwordError} </p>
-         {success && <p>created</p>}
+         {success && <p className='text-success fs-3'> User Created Successfully </p>}
       <Button variant="primary" type="submit">
             Register
       </Button>
     </Form>
+
+ 
+        <p>Already a member: Click <Link to='/login'>Login</Link></p>
+        </>
   );
 }
 
