@@ -34,6 +34,9 @@ signInWithEmailAndPassword(auth,email,password)
     const user = result.user;
 
     setSuccess(true)
+    form.reset();
+
+    
      console.log(user)
 
 })
@@ -46,13 +49,7 @@ signInWithEmailAndPassword(auth,email,password)
     }
 
 
-const  verifyEmail = () =>{
 
-    sendEmailVerification(auth.currentUser)
-    .then(() => {
-        alert('plz verify email')
-    })
-}
 
     return (
         <div className='w-50 mx-auto'>
@@ -67,7 +64,7 @@ const  verifyEmail = () =>{
                 <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="your password"  required/>
                 </div>
 
-                <button className='btn btn-primary' type='submit'> Button</button>
+                <button className='btn btn-primary' type='submit'> Login</button>
                 </form>
 
                 {

@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, sendEmailVerification } from 'firebase/auth';
 import app from './../Firebase/Firebase.init';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -42,6 +42,7 @@ function BasicExample() {
 
   const user =result.user;
   setSuccess(true)
+  verifyEmail()
   form.reset()
   console.log(user);
 
@@ -53,6 +54,14 @@ function BasicExample() {
   })
 
     }
+
+    const  verifyEmail = () =>{
+
+      sendEmailVerification(auth.currentUser)
+      .then(() => {
+          alert('plz verify email')
+      })
+  }
 
   return (
     <>
